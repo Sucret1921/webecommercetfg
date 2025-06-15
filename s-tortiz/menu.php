@@ -56,33 +56,6 @@ require 'header.html.php';
       <?php } ?>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-<script>
-  function addProducto(id, token) {
-    let url = 'clases/carrito.php';
-    let formData = new FormData();
-    formData.append('id', id);
-    formData.append('token', token);
-
-    fetch(url, {
-      method: 'POST',
-      body: formData
-    }).then(response => response.json())
-      .then(data => {
-        if (data.ok) {
-          // Actualiza el número de productos en el carrito
-          let elemento = document.getElementById("num_cart");
-          elemento.innerHTML = data.numero;
-        } else {
-          console.error('Error al agregar producto:', data.error);
-        }
-      }).catch(error => {
-        console.error('Error en la solicitud:', error);
-      });
-  }
-</script>
 
 </body>
 

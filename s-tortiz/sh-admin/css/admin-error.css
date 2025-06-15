@@ -1,0 +1,38 @@
+.alert {
+    border-radius: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    text-align: left;
+    background: #fff3cd;
+    color: #856404;
+    border: 1.5px solid #ffeeba;
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.08);
+}
+
+.alert ul {
+    margin: 0 0 0 1.2em;
+    padding: 0;
+}
+
+.alert li {
+    margin-bottom: 0.3em;
+    list-style: disc inside;
+}
+
+.alert .btn-close {
+    top: 0.8rem;
+    right: 1rem;
+    position: absolute;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+    .alert {
+        font-size: 1rem;
+        padding: 0.75rem 0.75rem 0.75rem 1.5rem;
+    }
+}

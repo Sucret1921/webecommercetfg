@@ -1,0 +1,113 @@
+Array
+(
+    [details] => Array
+        (
+            [id] => 6FM18881R3323933F
+            [intent] => CAPTURE
+            [status] => COMPLETED
+            [purchase_units] => Array
+                (
+                    [0] => Array
+                        (
+                            [reference_id] => default
+                            [amount] => Array
+                                (
+                                    [currency_code] => EUR
+                                    [value] => 25705.20
+                                )
+
+                            [payee] => Array
+                                (
+                                    [email_address] => sb-ofonj38090581@business.example.com
+                                    [merchant_id] => HADY3BJZH3R6C
+                                )
+
+                            [shipping] => Array
+                                (
+                                    [name] => Array
+                                        (
+                                            [full_name] => John Doe
+                                        )
+
+                                    [address] => Array
+                                        (
+                                            [address_line_1] => calle Vilamari 76993- 17469
+                                            [admin_area_2] => Albacete
+                                            [admin_area_1] => Albacete
+                                            [postal_code] => 02001
+                                            [country_code] => ES
+                                        )
+
+                                )
+
+                            [payments] => Array
+                                (
+                                    [captures] => Array
+                                        (
+                                            [0] => Array
+                                                (
+                                                    [id] => 1CJ92035ME219201X
+                                                    [status] => COMPLETED
+                                                    [amount] => Array
+                                                        (
+                                                            [currency_code] => EUR
+                                                            [value] => 25705.20
+                                                        )
+
+                                                    [final_capture] => 1
+                                                    [seller_protection] => Array
+                                                        (
+                                                            [status] => ELIGIBLE
+                                                            [dispute_categories] => Array
+                                                                (
+                                                                    [0] => ITEM_NOT_RECEIVED
+                                                                    [1] => UNAUTHORIZED_TRANSACTION
+                                                                )
+
+                                                        )
+
+                                                    [create_time] => 2025-05-19T20:13:59Z
+                                                    [update_time] => 2025-05-19T20:13:59Z
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+            [payer] => Array
+                (
+                    [name] => Array
+                        (
+                            [given_name] => John
+                            [surname] => Doe
+                        )
+
+                    [email_address] => sb-vplu238166164@personal.example.com
+                    [payer_id] => F67ZT63F3VNV8
+                    [address] => Array
+                        (
+                            [country_code] => ES
+                        )
+
+                )
+
+            [create_time] => 2025-05-19T20:13:49Z
+            [update_time] => 2025-05-19T20:13:59Z
+            [links] => Array
+                (
+                    [0] => Array
+                        (
+                            [href] => https://api.sandbox.paypal.com/v2/checkout/orders/6FM18881R3323933F
+                            [rel] => self
+                            [method] => GET
+                        )
+
+                )
+
+        )
+
+)

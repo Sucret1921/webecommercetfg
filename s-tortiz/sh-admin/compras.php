@@ -2,6 +2,12 @@
 require '../includes/config.php';
 require '../includes/basededatos.php';
 
+session_start();
+if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'Administrador') {
+    header('Location: index.php');
+    exit;
+}
+
 $db = new Database();
 $con = $db->conectar();
 
@@ -33,18 +39,18 @@ require 'header.php';
 ?>
 </div>
 <div class="container my-5 mt-4 mb-5">
-    <h2 class="mb-4">Transaccion</h2>
+    <h2 class="mb-4">Transacciones</h2>
     <div class="table-responsive">
         <table class="table table-hover align-middle" id="comprasTable">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Transacción</th>
-                    <th>Fecha</th>
-                    <th>Email</th>
-                    <th>Total</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
+                    <th>ID <i class="fas fa-hashtag"></i></th>
+                    <th>Transacción <i class="fas fa-receipt"></i></th>
+                    <th>Fecha <i class="fas fa-calendar-alt"></i></th>
+                    <th>Email <i class="fas fa-envelope"></i></th>
+                    <th>Total <i class="fas fa-euro-sign"></i></th>
+                    <th>Estado <i class="fas fa-info-circle"></i></th>
+                    <th>Acciones <i class="fas fa-cogs"></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -64,7 +70,8 @@ require 'header.php';
                         <a href="?toggle=<?php echo $c['id']; ?>&status=COMPLETED" class="btn btn-sm btn-success">Completar</a>
                         <a href="?toggle=<?php echo $c['id']; ?>&status=PENDING" class="btn btn-sm btn-warning">Pendiente</a>
                         <a href="?toggle=<?php echo $c['id']; ?>&status=CANCELLED" class="btn btn-sm btn-danger">Cancelar</a>
-                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminarCompraModal" data-id="<?php echo $c['id']; ?>" data-transaccion="<?php echo htmlspecialchars($c['id_transaccion']); ?>">Eliminar</button>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal" data-id="<?php echo $c['id']; ?>" data-nombre="
+                        <?php echo htmlspecialchars($c['id_transaccion']); ?>"><i class="fas fa-trash-alt"></i> Eliminar</button>
                     </td>
                 </tr>
                 <?php } ?>

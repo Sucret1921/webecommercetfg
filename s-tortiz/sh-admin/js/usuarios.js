@@ -9,3 +9,18 @@ if (eliminarUsuarioModal) {
     document.getElementById('nombreUsuarioEliminar').textContent = nombre;
   });
 }
+
+// Modal editar usuario
+var editarModal = document.getElementById('editarUsuarioModal');
+if (editarModal) {
+  editarModal.addEventListener('show.bs.modal', function (event) {
+    var btn = event.relatedTarget;
+    document.getElementById('editUsuarioId').value   = btn.getAttribute('data-id');
+    document.getElementById('editNombres').value      = btn.getAttribute('data-nombres');
+    document.getElementById('editApellidos').value    = btn.getAttribute('data-apellidos');
+    document.getElementById('editDni').value          = btn.getAttribute('data-dni');
+    document.getElementById('editEmail').value        = btn.getAttribute('data-email');
+    document.getElementById('editTelefono').value     = btn.getAttribute('data-telefono');
+    document.getElementById('editEstatus').checked    = btn.getAttribute('data-estatus') === '1';
+  });
+}

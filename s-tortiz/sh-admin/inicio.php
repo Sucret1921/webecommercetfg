@@ -1,4 +1,13 @@
-<?php 
+<?php
+// Protección de acceso: debe ir antes de cualquier salida o include
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'Administrador') {
+    header('Location: index.php');
+    exit;
+}
+
 include 'header.php'; 
 require '../includes/config.php';
 require '../includes/basededatos.php';
@@ -26,9 +35,8 @@ $ventasSemana = $ventasSemana->fetchAll(PDO::FETCH_ASSOC);
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Dashboard</h1>
+                <h1 class="mt-4 dashboard-anim-marquee"><span class="dashboard-anim">✨ S-LectorTiz V.1.9 🚀</span></h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">S-LectorTiz v1.9 – tu tienda, tu control.</li>
                 </ol>
                 <div class="row mb-4">
                     <div class="col-md-6 col-xl-4">
@@ -38,6 +46,16 @@ $ventasSemana = $ventasSemana->fetchAll(PDO::FETCH_ASSOC);
                                 <h5 class="card-title">Gestión de Productos</h5>
                                 <p class="card-text">Añade, edita o elimina productos del catálogo.</p>
                                 <a href="productos.php" class="btn btn-outline-primary btn-sm">Ir a productos</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card border-info shadow mb-4">
+                            <div class="card-body text-center">
+                                <i class="fas fa-images fa-3x text-info mb-3"></i>
+                                <h5 class="card-title">Gestión de Fotos</h5>
+                                <p class="card-text">Gestiona las imágenes principales y del carrusel de los productos.</p>
+                                <a href="subir_fotos.php" class="btn btn-outline-info btn-sm"><i class="fas fa-camera"></i> Ir a fotos</a>
                             </div>
                         </div>
                     </div>
@@ -58,6 +76,36 @@ $ventasSemana = $ventasSemana->fetchAll(PDO::FETCH_ASSOC);
                                 <h5 class="card-title">Gestión de Compras</h5>
                                 <p class="card-text">Consulta, filtra y gestiona todas las compras realizadas.</p>
                                 <a href="compras.php" class="btn btn-outline-warning btn-sm">Ir a compras</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card border-secondary shadow mb-4">
+                            <div class="card-body text-center">
+                                <i class="fas fa-envelope fa-3x text-secondary mb-3"></i>
+                                <h5 class="card-title">Gestión de Mensajes</h5>
+                                <p class="card-text">Gestiona los mensajes recibidos desde el formulario de contacto.</p>
+                                <a href="mensajes.php" class="btn btn-outline-secondary btn-sm"><i class="fas fa-envelope-open-text"></i> Ir a mensajes</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card border-info shadow mb-4">
+                            <div class="card-body text-center">
+                                <i class="fas fa-tags fa-3x text-info mb-3"></i>
+                                <h5 class="card-title">Gestión de Categorías</h5>
+                                <p class="card-text">Crea, edita o elimina categorías para los productos.</p>
+                                <a href="categorias.php" class="btn btn-outline-info btn-sm"><i class="fas fa-tags"></i> Ir a categorías</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card border-success shadow mb-4">
+                            <div class="card-body text-center">
+                                <i class="fas fa-user-check fa-3x text-success mb-3"></i>
+                                <h5 class="card-title">Validar Usuarios</h5>
+                                <p class="card-text">Valida usuarios pendientes de activación en la plataforma.</p>
+                                <a href="validar_usuarios.php" class="btn btn-outline-success btn-sm"><i class="fas fa-user-check"></i> Validar usuarios</a>
                             </div>
                         </div>
                     </div>
@@ -238,6 +286,31 @@ $ventasSemana = $ventasSemana->fetchAll(PDO::FETCH_ASSOC);
                         </table>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-info shadow mb-4">
+                            <div class="card-body">
+                                <h4 class="mb-3"><i class="fas fa-percent"></i> Panel de Descuentos <span class="badge bg-warning text-dark ms-2"><i class="fas fa-sun"></i> Rebajas de verano</span></h4>
+                                <form method="post" action="descuentos.php" class="d-inline">
+                                    <button name="descuento_masivo" value="50" class="btn btn-danger mb-2"><i class="fas fa-fire"></i> Rebajar todo al 50%</button>
+                                </form>
+                                <form method="post" action="descuentos.php" class="d-inline ms-2">
+                                    <button name="descuento_masivo" value="25" class="btn btn-warning mb-2"><i class="fas fa-bolt"></i> Rebajar todo al 25%</button>
+                                </form>
+                                <form method="post" action="descuentos.php" class="d-inline ms-2">
+                                    <button name="descuento_masivo" value="10" class="btn btn-info mb-2"><i class="fas fa-tag"></i> Rebajar todo al 10%</button>
+                                </form>
+                                <form method="post" action="descuentos.php" class="d-inline ms-2">
+                                    <button name="descuento_masivo" value="5" class="btn btn-success mb-2"><i class="fas fa-leaf"></i> Rebajar todo al 5%</button>
+                                </form>
+                                <a href="descuentos.php" class="btn btn-outline-info ms-3 mb-2"><i class="fas fa-cogs"></i> Gestión avanzada de descuentos</a>
+                                <div class="mt-3">
+                                    <span class="text-muted"><i class="fas fa-info-circle"></i> Accede a la gestión avanzada para modificar descuentos individuales.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         <?php include 'footer.php'; ?>
@@ -248,3 +321,4 @@ $ventasSemana = $ventasSemana->fetchAll(PDO::FETCH_ASSOC);
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2" crossorigin="anonymous"></script>
 <script src="js/inicio.js"></script>
+<link rel="stylesheet" href="css/dashboard-animacion.css">

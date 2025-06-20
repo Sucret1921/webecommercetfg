@@ -1,8 +1,16 @@
 body {
-    background: linear-gradient(135deg, #23272f 60%, #007bff 100%);
+    background: linear-gradient(120deg, #007bff 0%, #23272f 100%);
+    background-size: 200% 200%;
+    animation: gradientMove 10s ease-in-out infinite;
     min-height: 100vh;
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .form-login {
@@ -115,6 +123,24 @@ form {
     margin-bottom: 1.5rem;
     width: 100%;
     text-align: left;
+}
+
+/* Iconos superpuestos dentro del input en el login admin */
+.login-box .input-icon {
+  position: relative;
+}
+.login-box .input-icon input {
+  padding-left: 2.5rem;
+}
+.login-box .input-icon .fa-solid {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #007bff;
+  font-size: 1.1rem;
+  pointer-events: none;
+  opacity: 0.85;
 }
 
 @media (max-width: 900px) {

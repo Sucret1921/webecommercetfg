@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="../images/ImagenesGlobales/logoselector.png">
 </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -27,9 +28,10 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="configuracion.php">Configuración</a></li>
+                    <li><a class="dropdown-item" href="configuracion.php"><i class="fas fa-cog me-2"></i>Configuración</a></li>
+                    <li><a class="dropdown-item" href="../index.php"><i class="fas fa-store me-2"></i>Volver a la tienda</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="../logout.php">Cerrar sesión</a></li>
+                    <li><a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt me-2"></i>Cerrar sesión</a></li>
                 </ul>
             </li>
         </ul>
@@ -57,7 +59,29 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
                             Compras
                         </a>
+                        <a class="nav-link" href="descuentos.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-percent"></i></div>
+                            Descuentos
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Administración</div>
+                        <a class="nav-link" href="subir_fotos.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
+                            Fotos Productos
+                        </a>
+                        
+                        <a class="nav-link" href="mensajes.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-envelope"></i></div>
+                            Mensajes de Contacto
+                        </a>
+                        <a class="nav-link" href="categorias.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
+                            Categorías
+                        </a>
+                        <a class="nav-link" href="validar_usuarios.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-check"></i></div>
+                            Validar usuarios
+                        </a>
                     </div>
                 </div>
             </nav>
-        
+

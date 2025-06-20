@@ -85,97 +85,19 @@ require 'header.html.php';
     </div>
 </main>
 
-
+<script>
+  const PAGO_TOTAL = <?php echo isset($total) ? json_encode(number_format($total, 2, '.', '')) : '0'; ?>;
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 
-
 <!-- IMPLEMENTACIÓN PAYPAL -->
-    <script
-            src="https://www.paypal.com/sdk/js?client-id=<?php echo CLIENT_ID; ?>&buyer-country=FR&currency=<?php echo CURRENCY ?>&components=buttons&enable-funding=venmo,card&disable-funding=paylater"
-            data-sdk-integration-source="developer-studio"></script>
-
-
-        <script>
-            
-                    paypal.Buttons({
-                        createOrder: function (data, actions) {
-                            return actions.order.create({
-                                purchase_units: [{
-                                    amount: {
-                                        value: '<?php echo number_format($total, 2, '.', ''); ?>'
-                                    }
-                                }]
-                            });
-                        },
-                        onApprove: function (data, actions) {
-                            let URL = 'clases/captura.php';
-                            return actions.order.capture().then(function (details) {        
-                                return fetch(URL, {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({
-                                        details: details,
-                                    })
-                                }).then(function (response) {
-                                    //email
-                                    window.location.href = "VentanaEmergenteCompletado.html";
-                                    
-                                }).then(function (data) {
-                                    if (data.ok) {
-                                        window.location.href = "pago.php?success=true";
-                                    } else {
-                                        alert('Error al procesar el pago');
-                                    }
-                                });
-                            });
-                        }
-                    }).render('#paypal-button-container');
-            
-            </script>
-
-<!-- FIN IMPLEMENTACIÓN PAYPAL -->
-
-<script>
-    function actualizarCantidad(cantidad, id) {
-        let url = 'clases/actualizar_carrito.php';
-        let formData = new FormData();
-        formData.append('action', 'actualizar');
-        formData.append('id', id);
-        formData.append('cantidad', cantidad);
-
-        fetch(url, {
-            method: 'POST',
-            body: formData
-        }).then(response => response.json())
-            .then(data => {
-                if (data.ok) {
-                    // Actualiza el subtotal del producto
-                    let divsubtotal = document.getElementById('subtotal_' + id);
-                    divsubtotal.innerHTML = data.sub;
-
-                    // Actualiza el total del carrito
-                    let total = 0;
-                    document.querySelectorAll('[id^="subtotal_"]').forEach(function (subtotalElement) {
-                        let subtotalText = subtotalElement.innerHTML.replace(/[^\d.-]/g, ''); // Elimina símbolos de moneda
-                        total += parseFloat(subtotalText);
-                    });
-
-                    let totalElement = document.getElementById('total');
-                    totalElement.innerHTML = '<?php echo MONEDA; ?>' + total.toFixed(2);
-
-                    // Actualiza el número de productos únicos en el carrito
-                    let elemento = document.getElementById("num_cart");
-                    elemento.innerHTML = data.numero;
-                }
-            });
-    }
-</script>
-
+<script
+        src="https://www.paypal.com/sdk/js?client-id=<?php echo CLIENT_ID; ?>&buyer-country=FR&currency=<?php echo CURRENCY ?>&components=buttons&enable-funding=venmo,card&disable-funding=paylater"
+        data-sdk-integration-source="developer-studio"></script>
+<script src="js/pago.js"></script>
 </body>
 
 </html>
